@@ -1,4 +1,6 @@
+import { useProductStore } from "@/store/productStore";
 import { useQuery } from "@tanstack/react-query";
+
 
 export type Product = {
     id: number;
@@ -10,17 +12,20 @@ export type Product = {
 
 
 export default function useProducts(){
-
+    const setProducts = useProductStore((state) => state.setProducts);
     return useQuery<Product[]>(
         {
         queryKey: ["products"],
-        refetchOnWindowFocus: false,
         queryFn: async () => {
         const res = await fetch("https://fakestoreapi.com/products");
-        if (!res.ok) {
-        throw new Error("Network response was not ok");
-        }
-        return res.json();
-        }
-})
+        if (!res.ok) throw new Error("Network response was not ok");
+        const data= await res.json();
+        setProducts(data);
+        return data;
+        },
+        staleTime: Infinity,
+        refetchOnWindowFocus: false,
+
+       
+});
 }
