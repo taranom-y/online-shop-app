@@ -1,4 +1,4 @@
-import { useProductStore } from "@/store/productStore";
+import { useProductStore } from "@/store/ProductStore";
 import { useQuery } from "@tanstack/react-query";
 
 
@@ -7,6 +7,7 @@ export type Product = {
     title: string;
     price: number;
     image: string;
+    description: string;
     category: string;
 }
 
