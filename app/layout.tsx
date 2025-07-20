@@ -5,6 +5,7 @@ import "./globals.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 import { QueryClient } from "@tanstack/react-query";
+import Header from "@/components/ui/header";
 
 export const queryClient = new QueryClient();
 const geistSans = Geist({
@@ -28,6 +29,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryClientProvider client={queryClient}>
+          <Header />
+
           {children}
         </QueryClientProvider>
       </body>
