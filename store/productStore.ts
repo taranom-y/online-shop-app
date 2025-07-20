@@ -1,4 +1,4 @@
-import { Product } from '@/lib/hooks/useProducts';
+import { Product } from '@/hooks/useProducts';
 import { create } from 'zustand'
 
 
