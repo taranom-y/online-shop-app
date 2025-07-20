@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Online Shop App
 
-First, run the development server:
+An online shopping application built with Next.js and TypeScript, designed to display products, support search and category filtering, allow users to manage a shopping cart and using state management for cart system.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- Follows the App Router structure introduced in Next.js
+- React Query for server state (API data)
+- Fetches product list via `GET /products`using React Query, from https://fakestoreapi.com
+- Fetch user profile via `GET /users/1` using React Query, from https://fakestoreapi.com
+ - All product images are fetched dynamically from the API
+- Handles loading and error states during fetching user profile and product list
+- Search and filter products by product title and category in state
+- State Management with Zustand for client cart state 
+ - Add items to cart
+ - Increase/decrease item quantity
+ - Remove items from cart
+ - Calculate unit price and total price
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+- **Framework**: Next.js (App Router)
+- **Language**: TypeScript
+- **Server State**: React Query
+- **Global State**: Zustand
+- **Styling**: Tailwind CSS + Shadcn UI
+- **Routing**: File-based App Router
