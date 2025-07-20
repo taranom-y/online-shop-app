@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "./card";
 import { Button } from "./button";
-import { useProductStore } from "@/store/ProductStore";
+import { useProductStore } from "@/store/ProducStore";
 import useProducts from "@/hooks/useProducts";
 import { useCartStore } from "@/store/CartStore";
 import IsLoading from "@/app/Loading";
