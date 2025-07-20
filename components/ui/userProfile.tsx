@@ -4,7 +4,6 @@ import { AlertCircle, Loader2, User } from "lucide-react";
 export default function UserProfile() {
   const { data, isLoading, isError, error } = useUser();
 
-  console.log(data);
   if (isLoading) {
     return (
       <div className="flex items-center gap-2 p-4 text-blue-400">
