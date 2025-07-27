@@ -6,7 +6,7 @@ import ProductList from "@/components/ui/productList";
 export default function Home() {
   return (
     <>
-      <main className="pt-16 container flex flex-col  justify-center mx-auto">
+      <main className="pt-16 flex flex-col justify-center px-[24px] md:px-[64px] ">
         <FilteredProducts />
         <ProductList />
       </main>

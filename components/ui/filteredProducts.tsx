@@ -18,11 +18,11 @@ export default function FilteredProducts() {
         placeholder="Search products..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full md:w-4/12"
+        className="w-full md:w-4/12 "
       />
 
       <Select onValueChange={setCategory} value={category}>
-        <SelectTrigger className=" w-full md:w-3/12">
+        <SelectTrigger className=" w-full md:w-3/12 text-base">
           <SelectValue placeholder="Select category" />
         </SelectTrigger>
         <SelectContent>

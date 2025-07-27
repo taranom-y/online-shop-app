@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Card, CardContent } from "./card";
+import { Card, CardContent, CardDescription, CardTitle } from "./card";
 import { Button } from "./button";
 import { useProductStore } from "@/store/ProductStore";
 import useProducts from "@/hooks/useProducts";
@@ -25,7 +25,7 @@ export default function ProductList() {
     <section className="py-16 ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {filtered.map((product) => (
-          <Card key={product.id} className="p-4 flex flex-col">
+          <Card key={product.id}>
             <Image
               src={product.image}
               alt={product.title}
@@ -34,13 +34,19 @@ export default function ProductList() {
               className="h-40 w-full object-contain mb-4"
             />
             <CardContent className="flex-1">
-              <h2 className="font-semibold text-lg ">{product.title}</h2>
-              <p className="text-gray-600 ">${product.price}</p>
-              <p className="text-xs text-muted-foreground">
-                {product.category}
-              </p>
+              <CardTitle className="text-lg ">{product.title}</CardTitle>
+
+              <CardDescription className="line-clamp-5 ">
+                {product.description}
+              </CardDescription>
+              <p className="text-gray-700 font-bold mt-2">${product.price}</p>
+              <p className="">{product.category}</p>
             </CardContent>
-            <Button className="mt-2" onClick={() => addToCart({ ...product })}>
+
+            <Button
+              onClick={() => addToCart({ ...product })}
+              className="mx-8 bg-gray-700"
+            >
               Add to Cart
             </Button>
           </Card>

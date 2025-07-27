@@ -10,7 +10,7 @@ import { useCartStore } from "@/store/CartStore";
 export default function Header() {
   const cartCount = useCartStore((state) => state.totalQuantity());
   return (
-    <header className="w-full bg-dark shadow-sm border-b fixed top-0 left-0  z-50 bg-black ">
+    <header className="w-full bg-gray-500 shadow-sm border-b fixed top-0 left-0  z-50 text-white ">
       <div className="flex items-center justify-between px-4 py-3">
         <UserProfile />
 
@@ -28,11 +28,14 @@ export default function Header() {
         </div>
 
         <div>
-          <Link href="/cartList">
+          <Link
+            href="/cartList"
+            className="text-1xl flex items-center font-bold "
+          >
             Cart
             <Button variant="ghost" className="relative p-0">
-              <ShoppingCart className="w-6 h-6" />
-              <Badge className="absolute -top-1 -right-2 text-xs px-1.5 py-0.5 rounded-full bg-red-500">
+              <ShoppingCart className="size-7 " />
+              <Badge className="absolute -top-1 -right-2 text-sm px-1.5 py-0.5 rounded-full bg-red-500">
                 {cartCount}
               </Badge>
             </Button>
