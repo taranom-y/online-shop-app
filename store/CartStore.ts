@@ -11,6 +11,7 @@ type CartStore = {
   decrementItem: (productId: number) => void;
   removeItem: (productId: number) => void;
   totalQuantity: () => number ;
+  totalPrice: () => number;
 };
 
 
@@ -32,25 +33,24 @@ export const useCartStore = create<CartStore>((set, get) => ({
     }
   },
 
-  incrementItem: (productId) =>
-    set({
-     items: get().items.map((item) =>
-        productId === item.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ),
-    }),
+  incrementItem: (productId) => {
+   const newItems = [...get().items];   
+   const targetItem = newItems.find(({ id }) => id === productId);  
+  if (targetItem) targetItem.quantity++;  
+  set({ items: newItems,});
+},
 
-  decrementItem: (productId) =>
-    set({
-      items: get().items
-        .map((item) =>
-          productId === item.id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter((item) => item.quantity > 0),
-    }),
+    decrementItem: (productId) => {
+    const newItems = [...get().items];
+    const targetItem = newItems.find(({ id }) => id === productId);
+    if (targetItem && targetItem.quantity > 1) {
+      targetItem.quantity--;
+    }
+    else if (targetItem && targetItem.quantity === 1) {
+      newItems.splice(newItems.indexOf(targetItem), 1);
+    }
+    set({ items: newItems });
+  },
 
   removeItem: (productId) =>
     set({
@@ -62,6 +62,10 @@ export const useCartStore = create<CartStore>((set, get) => ({
         (sum, item) => sum + item.quantity,
         0   
     ),
+    totalPrice: () =>
+    get().items.reduce(
+      (sum, item) => sum + item.price * item.quantity, 0),
+
 }));
 
 
