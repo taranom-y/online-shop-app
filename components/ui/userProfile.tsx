@@ -23,8 +23,8 @@ export default function UserProfile() {
   return (
     <div className="flex items-center gap-2">
       <div className="flex items-center gap-2">
-        <User className="w-6 h-6 text-gray-700" />
-        <span className="text-sm font-medium">{data?.username}</span>
+        <User className="w-8 h-8 text-gray-100" />
+        <span className="text-1xl">{data?.username}</span>
       </div>
     </div>
   );
