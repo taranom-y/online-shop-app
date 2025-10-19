@@ -5,6 +5,7 @@ import { useProductStore } from "@/store/ProductStore";
 import useProducts from "@/hooks/useProducts";
 import { useCartStore } from "@/store/CartStore";
 import IsLoading from "@/app/Loading";
+import { useMemo } from "react";
 
 export default function ProductList() {
   const { data, isLoading, isError, error } = useProducts();
@@ -12,11 +13,14 @@ export default function ProductList() {
   const { search, category } = useProductStore((state) => state);
 
   const addToCart = useCartStore((state) => state.addItems);
-  const filtered = data?.filter((p) => {
-    const matchCategory = category === "all" || p.category === category;
-    const matchSearch = p.title.toLowerCase().includes(search.toLowerCase());
-    return matchCategory && matchSearch;
-  });
+
+  const filtered = useMemo(() => {
+    return data?.filter((p) => {
+      const matchCategory = category === "all" || p.category === category;
+      const matchSearch = p.title.toLowerCase().includes(search.toLowerCase());
+      return matchCategory && matchSearch;
+    });
+  }, [data, category, search]);
 
   if (isLoading) return <IsLoading />;
 
