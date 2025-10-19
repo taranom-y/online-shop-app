@@ -1,24 +1,15 @@
-import { Product } from '@/hooks/useProducts';
-import { create } from 'zustand'
+import { create } from "zustand";
 
-
-type ProductStore ={
-  products: Product[];
+type ProductStore = {
   search: string;
   category: string;
-  setProducts: (products: Product[]) => void;
   setSearch: (search: string) => void;
   setCategory: (category: string) => void;
-
 };
 
-
 export const useProductStore = create<ProductStore>((set) => ({
-  products: [],
-  search:"",
-  category:"all",
-  setProducts: (products) => set({ products }),
+  search: "",
+  category: "all",
   setSearch: (search) => set({ search }),
   setCategory: (category) => set({ category }),
-  
 }));

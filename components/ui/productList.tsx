@@ -7,11 +7,12 @@ import { useCartStore } from "@/store/CartStore";
 import IsLoading from "@/app/Loading";
 
 export default function ProductList() {
-  const { isLoading, isError, error } = useProducts();
+  const { data, isLoading, isError, error } = useProducts();
 
-  const { products, search, category } = useProductStore((state) => state);
+  const { search, category } = useProductStore((state) => state);
+
   const addToCart = useCartStore((state) => state.addItems);
-  const filtered = products.filter((p) => {
+  const filtered = data?.filter((p) => {
     const matchCategory = category === "all" || p.category === category;
     const matchSearch = p.title.toLowerCase().includes(search.toLowerCase());
     return matchCategory && matchSearch;
@@ -24,7 +25,7 @@ export default function ProductList() {
   return (
     <section className="py-16 ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        {filtered.map((product) => (
+        {filtered?.map((product) => (
           <Card key={product.id}>
             <Image
               src={product.image}
